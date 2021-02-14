@@ -14,6 +14,7 @@ form.addEventListener('submit', function(event) {
   clearTable();
   colorInput.value = "#000000"
   makeGrid(rows, cols);
+  addCellListeners();
 });
 
 /**
@@ -27,10 +28,21 @@ function makeGrid(rows, cols) {
     let newRow = newTable.insertRow(row);
     for (let col = 0; col < cols; col++) {
       let newCell = newRow.insertCell(col);
-      newCell.addEventListener('click', function(event) {
-	newCell.style.backgroundColor = colorInput.value;
-      });
     }
+  }
+}
+
+/**
+ * @description Add listeners to design canvas cells
+ * @param {table} - The table to operate on
+ */
+function addCellListeners() {
+  let table = document.querySelector('#pixelCanvas');
+  let cells = table.querySelectorAll('td');
+  for (let cell = 0; cell < cells.length; cell++) {
+    cells[cell].addEventListener('click', function(event) {
+      cells[cell].style.backgroundColor = colorInput.value;
+    });
   }
 }
 
