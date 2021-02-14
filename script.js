@@ -1,4 +1,6 @@
 // Select color input
+let colorInput = document.querySelector('#colorPicker');
+
 // Select size input
 let heightInput = document.querySelector('#inputHeight');
 let widthInput = document.querySelector('#inputWidth');
@@ -10,6 +12,7 @@ form.addEventListener('submit', function(event) {
   let cols = parseInt(widthInput.value, 10);
   event.preventDefault();
   clearTable();
+  colorInput.value = "#000000"
   makeGrid(rows, cols);
 });
 
@@ -24,6 +27,9 @@ function makeGrid(rows, cols) {
     let newRow = newTable.insertRow(row);
     for (let col = 0; col < cols; col++) {
       let newCell = newRow.insertCell(col);
+      newCell.addEventListener('click', function(event) {
+	newCell.style.backgroundColor = colorInput.value;
+      });
     }
   }
 }
