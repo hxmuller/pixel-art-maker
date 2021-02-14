@@ -1,10 +1,17 @@
 // Select color input
 // Select size input
-let height = 16;
-let width = 16;
-
+let heightInput = document.querySelector('#inputHeight');
+let widthInput = document.querySelector('#inputWidth');
 
 // When size is submitted by the user, call makeGrid()
+const form = document.querySelector('#sizePicker');
+form.addEventListener('submit', function(event) {
+  let rows = parseInt(heightInput.value, 10);
+  let cols = parseInt(widthInput.value, 10);
+  event.preventDefault();
+  clearTable();
+  makeGrid(rows, cols);
+});
 
 /**
  * @description Creates the design canvas
@@ -21,4 +28,12 @@ function makeGrid(rows, cols) {
   }
 }
 
-makeGrid(height, width);
+/**
+ * @description Removes all child elements of table
+ */
+function clearTable() {
+  table = document.querySelector('#pixelCanvas');
+  while (table.firstChild) {
+    table.removeChild(table.firstChild);
+  }
+}
